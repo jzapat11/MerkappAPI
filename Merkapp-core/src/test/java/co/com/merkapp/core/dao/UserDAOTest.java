@@ -36,7 +36,7 @@ public class UserDAOTest {
 		
 		int userID = userDAO.insertUser(user);
 		
-		//If id different to 0, then the register was inserted in DB.
+		//If id different to 0, then the record was inserted in DB.
 		Assert.assertNotSame(0, userID);
 	}
 	
