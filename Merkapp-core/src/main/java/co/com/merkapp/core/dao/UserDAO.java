@@ -9,5 +9,13 @@ public interface UserDAO {
 	 * @param user
 	 */
 	public int insertUser(User user);
+
+	/**
+	 * Getting the info to login to the app.
+	 * @param email
+	 * @param password
+	 * @return
+	 */
+	public User getUser(String email, String password);
 	
 }

@@ -3,9 +3,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +19,7 @@ import co.com.merkapp.core.entity.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:application-context.xml"})
+@FixMethodOrder(MethodSorters.NAME_ASCENDING) //This annotation is to run the test in a specific order.
 public class UserDAOTest {
 	
 	@Autowired
@@ -26,13 +30,13 @@ public class UserDAOTest {
 	
 	@Test
 	@Transactional
-	//@Rollback(false)
-	public void insertUser(){
+	@Rollback(false)
+	public void test1insertUser(){
 		User user = new User();
 		user.setName("Juan David");
 		user.setLastame("Zapata Calle");
-		user.setEmail("juan.zapata@globant.com");
-		user.setPassword("232455");
+		user.setEmail("jzapat11@gmail.com");
+		user.setPassword("12345");
 		
 		int userID = userDAO.insertUser(user);
 		
@@ -42,8 +46,8 @@ public class UserDAOTest {
 	
 	@Test
 	@Transactional
-	//@Rollback(false)
-	public void integrateUserWithItemList(){
+	@Rollback(false)
+	public void test2integrateUserWithItemList(){
 		List<MarketItem> marketItems = new ArrayList<MarketItem>();
 		
 		//Inserting first the marketItem
@@ -64,6 +68,20 @@ public class UserDAOTest {
 		user.setItemList(marketItems);
 		int userID= userDAO.insertUser(user);
 		System.out.println("USER ID: " + userID);
-		Assert.assertNotSame(0, userID);		
+		Assert.assertNotSame(0, userID);
+	}
+
+	@Test
+	@Transactional
+	public void test3LoginUser(){
+
+		String user = "juan.zapata@globant.com";
+		String password = "232455";
+		User user_ = userDAO.getUser(user, password);
+
+		System.out.println("ID Usuario: " + user_.getId());
+		System.out.println("Nombre Usuario: " + user_.getName());
+
+		Assert.assertNotNull(user_);
 	}
 }
