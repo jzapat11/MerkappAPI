@@ -43,44 +43,60 @@ public class UserDAOTest {
 		//If id different to 0, then the record was inserted in DB.
 		Assert.assertNotSame(0, userID);
 	}
-	
-	@Test
-	@Transactional
-	@Rollback(false)
-	public void test2integrateUserWithItemList(){
-		List<MarketItem> marketItems = new ArrayList<MarketItem>();
-		
-		//Inserting first the marketItem
-		MarketItem marketItem = new MarketItem();
-		marketItem.setItem("Azucar");
-		marketItems.add(marketItem);
-		
-		marketItem = new MarketItem();
-		marketItem.setItem("Sal");
-		marketItems.add(marketItem);		
-				
-		//Inserting then the user.
-		User user = new User();
-		user.setName("Juan David");
-		user.setLastame("Zapata Calle");
-		user.setEmail("juan.zapata@globant.com");
-		user.setPassword("232455");
-		user.setItemList(marketItems);
-		int userID= userDAO.insertUser(user);
-		System.out.println("USER ID: " + userID);
-		Assert.assertNotSame(0, userID);
-	}
 
 	@Test
-	@Transactional
-	public void test3LoginUser(){
+	public void test2LoginUser(){
 
-		String user = "juan.zapata@globant.com";
-		String password = "232455";
+		String user = "jzapat11@gmail.com";
+		String password = "12345";
 		User user_ = userDAO.getUser(user, password);
 
 		System.out.println("ID Usuario: " + user_.getId());
 		System.out.println("Nombre Usuario: " + user_.getName());
+
+		Assert.assertNotNull(user_);
+	}
+
+	@Test
+	@Transactional
+	@Rollback(false)
+	public void test3integrateUserWithItemList(){
+
+		//Loading user to set market items to.
+		String user = "jzapat11@gmail.com";
+		String password = "12345";
+		User user_ = userDAO.getUser(user, password);
+		user_.setName("Lina Marcela");
+		user_.setLastame("Parra Zuniga");
+
+		List<MarketItem> marketItems = new ArrayList<MarketItem>();
+
+		//Inserting first the marketItem
+		MarketItem marketItem = new MarketItem();
+		marketItem.setItem("Azucar");
+		marketItems.add(marketItem);
+		//This will update user and create record in marketList table.
+		user_.addMarketItem(marketItem);
+
+		marketItem = new MarketItem();
+		marketItem.setItem("Sal");
+		marketItems.add(marketItem);
+		//This will update user and create record in marketList table.
+		user_.addMarketItem(marketItem);
+	}
+
+	@Test
+	@Transactional
+	public void test4LoginUser(){
+
+		String user = "jzapat11@gmail.com";
+		String password = "12345";
+		User user_ = userDAO.getUser(user, password);
+
+		System.out.println("ID Usuario: " + user_.getId());
+		System.out.println("Nombre Usuario: " + user_.getName());
+
+		System.out.println("Lista de Item de mercado; " + user_.getItemList().size());
 
 		Assert.assertNotNull(user_);
 	}

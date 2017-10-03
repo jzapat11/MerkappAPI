@@ -44,4 +44,9 @@ public class UserDAOImpl implements UserDAO{
 
 		return entityManager.createQuery(criteriaQuery).getSingleResult();
 	}
+
+	public User updateUser(User user) {
+		User userUpdated = (User)entityManager.merge(user);
+		return userUpdated;
+	}
 }

@@ -1,10 +1,6 @@
 package co.com.merkapp.core.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "MARKETLIST")
 public class MarketItem {
@@ -16,6 +12,10 @@ public class MarketItem {
 
 	@Column(name = "ITEMNAME")
 	private String item;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USER_ID")
+	private User user;
 
 	public int getId() {
 		return id;
@@ -31,5 +31,9 @@ public class MarketItem {
 
 	public void setItem(String item) {
 		this.item = item;
+	}
+
+	public void setUser(User user){
+		this.user = user;
 	}
 }

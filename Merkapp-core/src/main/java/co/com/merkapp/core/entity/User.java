@@ -2,14 +2,7 @@ package co.com.merkapp.core.entity;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity(name = "USER")
 public class User {
@@ -31,8 +24,11 @@ public class User {
 	@Column(name = "PASSWORD")
 	private String password;
 
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name = "USER_ID", nullable=false)
+	@OneToMany(
+			mappedBy = "user",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true
+	)
 	private List<MarketItem> itemList;
 
 	public int getId() {
@@ -71,15 +67,21 @@ public class User {
 		return password;
 	}
 
-	public List<MarketItem> getItemList() {
-		return itemList;
-	}
-
-	public void setItemList(List<MarketItem> itemList) {
-		this.itemList = itemList;
-	}
-
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public void addMarketItem(MarketItem marketItem){
+		this.itemList.add(marketItem);
+		marketItem.setUser(this);
+	}
+
+	public void removeMarketItem(MarketItem marketItem){
+		this.itemList.remove(marketItem);
+		marketItem.setUser(null);
+	}
+
+	public List<MarketItem> getItemList(){
+		return this.itemList;
 	}
 }

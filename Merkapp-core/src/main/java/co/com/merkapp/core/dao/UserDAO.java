@@ -17,5 +17,12 @@ public interface UserDAO {
 	 * @return
 	 */
 	public User getUser(String email, String password);
+
+
+	/**
+	 * Method to update the user
+	 * @param user
+	 */
+	public User updateUser(User user);
 	
 }
