@@ -9,9 +9,10 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
+	<name>merkapp-core</name>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>merkapp-core</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>
@@ -56,17 +57,4 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

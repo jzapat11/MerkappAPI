@@ -34,6 +34,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>co.com.merkapp.api</groupId>
+			<artifactId>merkapp-core</artifactId>
+			<version>0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
