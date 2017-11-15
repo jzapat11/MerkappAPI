@@ -8,7 +8,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class MerkappRestController {
 
-    public ResponseEntity<?> login(){
+    public ResponseEntity<?> loginUser(){
+        return null;
+    }
+
+    public ResponseEntity<?> getItemListPerUser(){
+        return null;
+    }
+
+    public ResponseEntity<?> createMarketItem(){
+        return null;
+    }
+
+    public ResponseEntity<?> updateMarketItem(){
+        return null;
+    }
+
+    public ResponseEntity<?> deleteMarketItem(){
         return null;
     }
 }
