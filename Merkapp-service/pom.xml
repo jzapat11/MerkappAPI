@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>co.com.merkapp.api</groupId>
+    <groupId>co.com.merkapp.api</groupId>
 	<artifactId>merkapp-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>merkapp-service</name>
 	<description>Rest API for Merkapp</description>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.4.0.RELEASE</version>
+		<version>1.5.10.RELEASE</version>
 	</parent>
 
 	<properties>
@@ -28,22 +28,41 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 
+		<!-- Swagger dependencies to generate automated API documentation -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.4.0</version>
+		</dependency>
+
+		<!-- Test dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>co.com.merkapp.api</groupId>
 			<artifactId>merkapp-core</artifactId>
 			<version>0</version>
-		</dependency>
+		</dependency>-->
 
 	</dependencies>
 
 	<build>
+		<finalName>Merkapi</finalName>
+        
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -51,6 +70,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
 
 </project>

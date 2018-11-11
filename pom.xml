@@ -15,6 +15,7 @@
 		<mysql.connector.version>5.1.10</mysql.connector.version>
 		<mockito.all.version>1.10.19</mockito.all.version>
 		<junit.version>4.11</junit.version>
+		<project.lombok.version>1.16.20</project.lombok.version>
 	</properties>
 	
 	<modules>
@@ -58,6 +59,11 @@
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
 				<version>${mysql.connector.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${project.lombok.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.mockito</groupId>

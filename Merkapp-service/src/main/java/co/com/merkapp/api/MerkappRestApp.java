@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication(scanBasePackages = {"co.com.merkapp.api"})
-@ImportResource({"classpath* :application-context.xml"})
+//@ImportResource({"classpath* :application-context.xml"})
 public class MerkappRestApp {
 
 	public static void main(String[] args) {
